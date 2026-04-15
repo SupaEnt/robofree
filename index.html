@@ -8,11 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@700&display=swap');
         
-        :root {
-            --tw-color-primary: #10b981;
-        }
+        :root { --tw-color-primary: #10b981; }
         
         * {
             transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
@@ -20,13 +18,8 @@
             transition-duration: 150ms;
         }
         
-        .tail-container * {
-            font-family: 'Inter', system_ui, sans-serif;
-        }
-        
-        .heading-font {
-            font-family: 'Playfair Display', sans-serif;
-        }
+        .tail-container * { font-family: 'Inter', system_ui, sans-serif; }
+        .heading-font { font-family: 'Playfair Display', sans-serif; }
 
         .hero-bg {
             background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%),
@@ -39,62 +32,20 @@
             100% { background-position: center 100%; }
         }
         
-        .section-header {
-            position: relative;
-        }
-        
-        .section-header::after {
-            content: '';
-            position: absolute;
-            width: 64px;
-            height: 3px;
-            background: linear-gradient(to right, #10b981, #34d399);
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 9999px;
-        }
-        
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
         .card-hover:hover {
             transform: translateY(-12px) scale(1.03);
             box-shadow: 0 25px 50px -12px rgb(16 185 129 / 0.25);
         }
         
-        .glow-button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .glow-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 40%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shimmer 4s infinite;
-        }
-        
-        @keyframes shimmer {
-            100% { left: 200%; }
-        }
-        
-        .leaf {
-            animation: floatLeaf 6s ease-in-out infinite;
-        }
+        .leaf { animation: floatLeaf 6s ease-in-out infinite; }
     </style>
 </head>
 <body class="tail-container">
+
     <!-- NAVBAR -->
     <nav class="bg-slate-950/90 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto">
             <div class="px-8 py-5 flex items-center justify-between">
-                <!-- Logo -->
                 <div class="flex items-center gap-x-3">
                     <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-inner">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -105,12 +56,8 @@
                     <span class="text-xs font-medium px-2.5 py-px bg-emerald-500/10 text-emerald-400 rounded-full ring-1 ring-emerald-400/30">est. 2026</span>
                 </div>
 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-x-8 text-sm font-medium text-slate-300">
-                    <a href="#mission" class="hover:text-white flex items-center gap-x-1">
-                        <i class="fa-solid fa-leaf text-emerald-400"></i>
-                        MISSION
-                    </a>
+                    <a href="#mission" class="hover:text-white flex items-center gap-x-1"><i class="fa-solid fa-leaf text-emerald-400"></i> MISSION</a>
                     <a href="#join" class="hover:text-white">JOIN THE MOVEMENT</a>
                     <a href="#community" class="hover:text-white">COMMUNITY</a>
                     <a href="#impact" class="hover:text-white">MAKE AN IMPACT</a>
@@ -118,37 +65,13 @@
                 </div>
 
                 <div class="flex items-center gap-x-4">
-                    <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" 
-                            class="glow-button px-6 py-3 bg-white text-slate-900 font-semibold rounded-3xl flex items-center gap-x-2 hover:shadow-2xl hover:shadow-emerald-500/30">
-                        <i class="fa-solid fa-heart text-red-500"></i>
-                        <span>DONATE</span>
+                    <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="px-6 py-3 bg-white text-slate-900 font-semibold rounded-3xl flex items-center gap-x-2 hover:shadow-xl">
+                        <i class="fa-solid fa-heart text-red-500"></i><span>DONATE</span>
                     </button>
-                    
-                    <button onclick="document.getElementById('join-modal').classList.remove('hidden')" 
-                            class="px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-3xl flex items-center gap-x-2 shadow-lg shadow-emerald-500/40">
-                        <i class="fa-solid fa-handshake"></i>
-                        JOIN FREE
+                    <button onclick="document.getElementById('join-modal').classList.remove('hidden')" class="px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-3xl flex items-center gap-x-2 shadow-lg shadow-emerald-500/40">
+                        <i class="fa-solid fa-handshake"></i> JOIN FREE
                     </button>
-
-                    <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="md:hidden text-2xl text-white">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-t border-white/10 px-8 py-6 flex flex-col gap-y-6 text-lg">
-                <a href="#mission" onclick="toggleMobileMenu()" class="text-white">Our Mission</a>
-                <a href="#join" onclick="toggleMobileMenu()" class="text-white">Join the Movement</a>
-                <a href="#community" onclick="toggleMobileMenu()" class="text-white">Community Stories</a>
-                <a href="#impact" onclick="toggleMobileMenu()" class="text-white">Support &amp; Donate</a>
-                <a href="#bea" onclick="toggleMobileMenu()" class="text-white">Meet Bea</a>
-                <div class="pt-4 border-t border-white/10 flex flex-col gap-y-3">
-                    <button onclick="document.getElementById('donate-modal').classList.remove('hidden');toggleMobileMenu()" 
-                            class="w-full py-4 bg-white text-slate-900 rounded-3xl font-semibold">Donate to the Cause</button>
-                    <button onclick="document.getElementById('join-modal').classList.remove('hidden');toggleMobileMenu()" 
-                            class="w-full py-4 bg-emerald-500 text-white rounded-3xl font-semibold">Join Instantly</button>
+                    <button id="mobile-menu-btn" class="md:hidden text-2xl text-white"><i class="fa-solid fa-bars"></i></button>
                 </div>
             </div>
         </div>
@@ -157,8 +80,6 @@
     <!-- HERO -->
     <header class="hero-bg h-screen flex items-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(at_bottom_right,#10b981_0%,transparent_70%)] opacity-30"></div>
-        
-        <!-- Floating leaves -->
         <div class="absolute top-20 left-10 text-emerald-300/30 text-7xl leaf" style="animation-delay: 0s;">🍃</div>
         <div class="absolute top-40 right-12 text-emerald-300/30 text-6xl leaf" style="animation-delay: 1.8s;">🌿</div>
         <div class="absolute bottom-32 left-1/4 text-emerald-300/30 text-8xl leaf" style="animation-delay: 3.2s;">🌱</div>
@@ -170,58 +91,20 @@
                     <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
                     NOW FORMING • OFF-GRID CHAPTERS OPENING SOON
                 </div>
-                
-                <h1 class="heading-font text-7xl md:text-8xl font-bold leading-none text-white tracking-tighter mb-6">
-                    RoboFree
-                </h1>
-                
+                <h1 class="heading-font text-7xl md:text-8xl font-bold leading-none text-white tracking-tighter mb-6">RoboFree</h1>
                 <p class="text-3xl md:text-4xl text-white/90 leading-tight mb-8 max-w-lg">
                     A warm community of people choosing simple, human lives —<br>
                     <span class="text-emerald-300">away from robots, screens, and the rush of tomorrow.</span>
                 </p>
-                
                 <div class="flex flex-wrap gap-4">
-                    <button onclick="document.getElementById('join-modal').classList.remove('hidden')" 
-                            class="glow-button text-xl px-10 py-6 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-3xl flex items-center gap-x-3 shadow-2xl shadow-emerald-500/50">
-                        <span>JOIN THE MOVEMENT</span>
-                        <i class="fa-solid fa-arrow-right"></i>
+                    <button onclick="document.getElementById('join-modal').classList.remove('hidden')" class="px-10 py-6 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-3xl flex items-center gap-x-3 text-xl shadow-xl">
+                        <span>JOIN THE MOVEMENT</span><i class="fa-solid fa-arrow-right"></i>
                     </button>
-                    
-                    <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" 
-                            class="text-xl px-10 py-6 border-2 border-white/70 hover:border-white text-white font-semibold rounded-3xl flex items-center gap-x-3 backdrop-blur-sm">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <span>FUND OUR FREEDOM</span>
+                    <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="px-10 py-6 border-2 border-white/70 hover:border-white text-white font-semibold rounded-3xl flex items-center gap-x-3 text-xl">
+                        <i class="fa-solid fa-hand-holding-dollar"></i><span>FUND OUR FREEDOM</span>
                     </button>
-                </div>
-                
-                <div class="mt-12 flex items-center gap-x-8 text-white/70 text-sm">
-                    <div class="flex -space-x-4">
-                        <div class="w-8 h-8 bg-amber-300 rounded-2xl ring-2 ring-slate-900 flex items-center justify-center text-xs">👩‍🌾</div>
-                        <div class="w-8 h-8 bg-sky-300 rounded-2xl ring-2 ring-slate-900 flex items-center justify-center text-xs">🧔‍♂️</div>
-                        <div class="w-8 h-8 bg-rose-300 rounded-2xl ring-2 ring-slate-900 flex items-center justify-center text-xs">👨‍👧</div>
-                    </div>
-                    <p class="leading-tight">Already 1,847 humans have chosen<br>freedom. <span class="text-emerald-400 font-medium">Be next.</span></p>
-                    <div class="h-12 w-px bg-white/30"></div>
-                    <div class="flex items-center text-emerald-400">
-                        <i class="fa-solid fa-check-circle text-2xl mr-2"></i>
-                        <span class="uppercase text-xs tracking-[2px]">Nature • Real Connection • Freedom</span>
-                    </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-12 left-1/2 flex flex-col items-center text-white/60 text-xs tracking-widest">
-            <div class="mb-2">SCROLL FOR TRUTH</div>
-            <i class="fa-solid fa-chevron-down animate-bounce text-2xl"></i>
-        </div>
-        
-        <!-- Trust bar -->
-        <div class="absolute bottom-0 left-0 right-0 bg-white/5 backdrop-blur-md py-4 border-t border-white/10 text-white/60 text-sm flex items-center justify-center gap-x-8 flex-wrap">
-            <div class="flex items-center gap-x-2"><i class="fa-solid fa-seedling"></i> OFF-GRID LAND ACQUIRED</div>
-            <div class="flex items-center gap-x-2"><i class="fa-solid fa-users"></i> 100% HUMAN-LED</div>
-            <div class="flex items-center gap-x-2"><i class="fa-solid fa-ban"></i> ZERO ROBOTS. EVER.</div>
-            <div class="flex items-center gap-x-2"><i class="fa-solid fa-shield"></i> REGISTERED ORGANIZATION</div>
         </div>
     </header>
 
@@ -231,54 +114,18 @@
             <div class="md:col-span-5">
                 <div class="sticky top-8">
                     <span class="px-4 py-2 bg-emerald-100 text-emerald-700 text-sm font-semibold rounded-3xl">OUR NORTH STAR</span>
-                    <h2 class="heading-font text-6xl leading-none tracking-tighter text-slate-900 mt-6 mb-8">
-                    Reclaim the simple, beautiful life that machines stole from us.
-                    </h2>
-                    <p class="text-xl text-slate-600 leading-relaxed">
-                        RoboFree is not anti-technology. We are <span class="font-semibold text-emerald-600">pro-humanity</span>. 
-                        We believe the best version of life happens when we look each other in the eyes, feel the earth beneath our feet, and remember what it means to be truly alive.
-                    </p>
-                    <div class="mt-12 flex gap-x-8 text-sm">
-                        <div>
-                            <div class="text-5xl font-bold text-emerald-500">0</div>
-                            <div class="uppercase tracking-widest">Robots allowed</div>
-                        </div>
-                        <div>
-                            <div class="text-5xl font-bold text-emerald-500">∞</div>
-                            <div class="uppercase tracking-widest">Human connection</div>
-                        </div>
-                        <div>
-                            <div class="text-5xl font-bold text-emerald-500">100%</div>
-                            <div class="uppercase tracking-widest">Nature powered</div>
-                        </div>
-                    </div>
+                    <h2 class="heading-font text-6xl leading-none tracking-tighter text-slate-900 mt-6 mb-8">Reclaim the simple, beautiful life that machines stole from us.</h2>
+                    <p class="text-xl text-slate-600 leading-relaxed">RoboFree is not anti-technology. We are <span class="font-semibold text-emerald-600">pro-humanity</span>. We believe the best version of life happens when we look each other in the eyes, feel the earth beneath our feet, and remember what it means to be truly alive.</p>
                 </div>
             </div>
-            
             <div class="md:col-span-7">
                 <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-white rounded-3xl p-8 card-hover shadow-xl">
-                        <i class="fa-solid fa-tree text-6xl text-emerald-400 mb-6"></i>
-                        <h3 class="text-2xl font-semibold mb-2">Nature First</h3>
-                        <p class="text-slate-600">We grow our own food, build our own shelters, and let the forest teach us what no algorithm ever could.</p>
-                    </div>
-                    <div class="bg-white rounded-3xl p-8 card-hover shadow-xl">
-                        <i class="fa-solid fa-heart text-6xl text-rose-400 mb-6"></i>
-                        <h3 class="text-2xl font-semibold mb-2">Real Connection</h3>
-                        <p class="text-slate-600">No screens between us. Stories told around the fire. Laughter that echoes through the trees.</p>
-                    </div>
-                    <div class="bg-white rounded-3xl p-8 card-hover shadow-xl">
-                        <i class="fa-solid fa-feather text-6xl text-amber-400 mb-6"></i>
-                        <h3 class="text-2xl font-semibold mb-2">Freedom Rediscovered</h3>
-                        <p class="text-slate-600">Escape the endless scroll. Return to the rhythm of the sun, the seasons, and your own beating heart.</p>
-                    </div>
+                    <div class="bg-white rounded-3xl p-8 card-hover shadow-xl"><i class="fa-solid fa-tree text-6xl text-emerald-400 mb-6"></i><h3 class="text-2xl font-semibold mb-2">Nature First</h3><p class="text-slate-600">We grow our own food, build our own shelters, and let the forest teach us what no algorithm ever could.</p></div>
+                    <div class="bg-white rounded-3xl p-8 card-hover shadow-xl"><i class="fa-solid fa-heart text-6xl text-rose-400 mb-6"></i><h3 class="text-2xl font-semibold mb-2">Real Connection</h3><p class="text-slate-600">No screens between us. Stories told around the fire. Laughter that echoes through the trees.</p></div>
+                    <div class="bg-white rounded-3xl p-8 card-hover shadow-xl"><i class="fa-solid fa-feather text-6xl text-amber-400 mb-6"></i><h3 class="text-2xl font-semibold mb-2">Freedom Rediscovered</h3><p class="text-slate-600">Escape the endless scroll. Return to the rhythm of the sun, the seasons, and your own beating heart.</p></div>
                     <div class="bg-white rounded-3xl p-8 card-hover shadow-xl border-2 border-dashed border-emerald-400 flex flex-col justify-center items-center text-center">
                         <p class="text-emerald-600 font-medium text-xl">This is the community you’ve been quietly longing for.</p>
-                        <button onclick="document.getElementById('join-modal').classList.remove('hidden')" 
-                                class="mt-8 text-emerald-600 underline flex items-center gap-x-2 hover:gap-x-4">
-                            BE PART OF IT 
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <button onclick="document.getElementById('join-modal').classList.remove('hidden')" class="mt-8 text-emerald-600 underline flex items-center gap-x-2 hover:gap-x-4">BE PART OF IT <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -291,333 +138,79 @@
             <div class="grid md:grid-cols-12 gap-12 items-center">
                 <div class="md:col-span-5">
                     <div class="rounded-3xl overflow-hidden border-4 border-white/30">
-                        <img src="https://picsum.photos/id/1011/800/900" alt="Bea — Founder of RoboFree" 
-                             class="w-full h-full object-cover">
+                        <img src="https://picsum.photos/id/1011/800/900" alt="Bea — Founder of RoboFree" class="w-full h-full object-cover">
                     </div>
                 </div>
                 <div class="md:col-span-7">
                     <span class="uppercase text-emerald-400 text-sm font-semibold tracking-[1px]">MEET THE VISIONARY</span>
                     <h2 class="heading-font text-6xl leading-none mt-4 mb-8">Hi, I’m Bea.<br>I started this because I missed being human.</h2>
-                    <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
-                        After 15 years building tech empires, I walked away from the screens and the algorithms. 
-                        I wanted my children to know the sound of birds instead of notifications. I wanted to remember what my own hands could create.
-                    </p>
-                    <p class="mt-8 text-lg text-white/70">
-                        RoboFree is my love letter to humanity. If you feel the same quiet ache for something real — 
-                        welcome home.
-                    </p>
-                    <div class="mt-12 flex items-center gap-x-4">
-                        <div class="px-8 py-4 bg-white/10 backdrop-blur rounded-3xl flex items-center">
-                            <span class="text-4xl mr-4">🌍</span>
-                            <div>
-                                <div class="font-semibold">Currently building our first sanctuary in the hills</div>
-                                <div class="text-emerald-400 text-sm">Northern Israel • 2026</div>
-                            </div>
-                        </div>
-                        <a href="#" class="text-emerald-300 underline text-lg flex items-center">Read Bea’s full story →</a>
-                    </div>
+                    <p class="text-xl text-white/80 leading-relaxed max-w-2xl">After 15 years building tech empires, I walked away from the screens and the algorithms. I wanted my children to know the sound of birds instead of notifications. I wanted to remember what my own hands could create.</p>
+                    <p class="mt-8 text-lg text-white/70">RoboFree is my love letter to humanity. If you feel the same quiet ache for something real — welcome home.</p>
                 </div>
             </div>
         </div>
     </section>
 
-<!-- COMMUNITY STORIES + NEW GALLERY -->
-<section id="community" class="max-w-screen-2xl mx-auto px-8 py-24">
-    <div class="flex justify-between items-baseline mb-12">
-        <div>
-            <span class="text-emerald-500 font-medium">LIVE FROM THE SANCTUARY</span>
-            <h2 class="heading-font text-5xl">Real humans. Real freedom.</h2>
-        </div>
-    </div>
-    
-    <!-- Original 3 stories (kept but now even warmer) -->
-    <div class="grid md:grid-cols-3 gap-8 mb-20">
-        <div class="bg-white rounded-3xl p-8 card-hover">
-            <div class="flex gap-x-3 mb-6">
-                <div class="text-4xl">🌲</div>
-                <div>
-                    <p class="font-semibold">Elena Voss, 34 • Former AI Engineer</p>
-                    <p class="text-emerald-500 text-sm">Joined 3 months ago</p>
-                </div>
-            </div>
-            <p class="italic text-slate-600">"I traded 80-hour weeks and dopamine hits for sunrise gardening and conversations that last for hours. My anxiety disappeared the moment I put down my phone for good."</p>
-        </div>
-        
-        <div class="bg-white rounded-3xl p-8 card-hover">
-            <div class="flex gap-x-3 mb-6">
-                <div class="text-4xl">🔥</div>
-                <div>
-                    <p class="font-semibold">Marcus Hale, 51 • Venture Capitalist</p>
-                    <p class="text-emerald-500 text-sm">Joined + major donor</p>
-                </div>
-            </div>
-            <p class="italic text-slate-600">"I made my fortune in silicon. I’m now investing it in soil. RoboFree reminded me why I started in the first place — to make life better. Not faster."</p>
-        </div>
-        
-        <div class="bg-white rounded-3xl p-8 card-hover">
-            <div class="flex gap-x-3 mb-6">
-                <div class="text-4xl">👨‍👩‍👧‍👦</div>
-                <div>
-                    <p class="font-semibold">The Rivera Family</p>
-                    <p class="text-emerald-500 text-sm">Whole family joined</p>
-                </div>
-            </div>
-            <p class="italic text-slate-600">"Our kids finally look up — at stars, not screens. We cook together, read together, dream together. This is the childhood I never knew I could give them."</p>
-        </div>
-    </div>
-
-      <!-- MOMENTS OF FREEDOM GALLERY - FIXED FOR VERCEL -->
-    <div class="mt-16">
-        <p class="text-center text-emerald-600 font-medium tracking-widest text-sm mb-8">MOMENTS OF FREEDOM</p>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <!-- 1 -->
-            <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
-                <img src="/public/moments-circle.jpg" alt="Circle of joy at golden hour" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">
-                        🌿 PURE CONNECTION
-                    </div>
-                    <p class="text-xl font-light leading-tight">Dancing with the sunset.<br>No music needed.</p>
-                </div>
-            </div>
-
-            <!-- 2 -->
-            <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
-                <img src="/public/moments-guitar.jpg" alt="Guitar circle in the meadow" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">
-                        🎸 SONGS AROUND THE FIRE
-                    </div>
-                    <p class="text-xl font-light leading-tight">Butterflies and laughter.<br>Real music, real hearts.</p>
-                </div>
-            </div>
-
-            <!-- 3 -->
-            <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
-                <img src="/public/moments-pottery.jpg" alt="Pottery circle in nature" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">
-                        🪔 HANDS IN THE CLAY
-                    </div>
-                    <p class="text-xl font-light leading-tight">Creating together.<br>No screens, just soul.</p>
-                </div>
-            </div>
-
-            <!-- 4 -->
-            <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
-                <img src="/public/moments-art.jpg" alt="Art picnic under the trees" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">
-                        🎨 CREATING WITH LIGHT
-                    </div>
-                    <p class="text-xl font-light leading-tight">Painting life as it happens.<br>Under the trees, in the moment.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-            <!-- Photo 2: Guitar Circle -->
-            <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
-                <img src="/moments-guitar.jpg" alt="Guitar circle in the meadow" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">
-                        <span class="text-lg">🎸</span>
-                        SONGS AROUND THE FIRE
-                    </div>
-                    <p class="text-xl font-light leading-tight">Butterflies and laughter.<br>Real music, real hearts.</p>
-                </div>
-            </div>
-
-            <!-- Photo 3: Pottery -->
-            <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
-                <img src="/moments-pottery.jpg" alt="Pottery circle in nature" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">
-                        <span class="text-lg">🪔</span>
-                        HANDS IN THE CLAY
-                    </div>
-                    <p class="text-xl font-light leading-tight">Creating together.<br>No screens, just soul.</p>
-                </div>
-            </div>
-
-            <!-- Photo 4: Art Picnic -->
-            <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
-                <img src="/moments-art.jpg" alt="Art picnic under the trees" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">
-                        <span class="text-lg">🎨</span>
-                        CREATING WITH LIGHT
-                    </div>
-                    <p class="text-xl font-light leading-tight">Painting life as it happens.<br>Under the trees, in the moment.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-            <!-- Photo 2 -->
-            <div class="group relative rounded-3xl overflow-hidden h-96 shadow-2xl">
-                <img src="/moments-guitar.jpg" alt="Guitar circle in the meadow" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div class="absolute bottom-6 left-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-sm mb-1">
-                        <i class="fa-solid fa-music"></i>
-                        SONGS AROUND THE FIRE
-                    </div>
-                    <p class="text-2xl font-light leading-none">Butterflies and laughter.<br>Real music, real hearts.</p>
-                </div>
-                <div class="absolute top-6 right-6 text-5xl opacity-30 group-hover:opacity-70 transition-all">🌼</div>
-            </div>
-
-            <!-- Photo 3 -->
-            <div class="group relative rounded-3xl overflow-hidden h-96 shadow-2xl">
-                <img src="/moments-pottery.jpg" alt="Pottery circle in nature" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div class="absolute bottom-6 left-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-sm mb-1">
-                        <i class="fa-solid fa-hand-sparkles"></i>
-                        HANDS IN THE CLAY
-                    </div>
-                    <p class="text-2xl font-light leading-none">Creating together.<br>No screens, just soul.</p>
-                </div>
-                <div class="absolute top-6 right-6 text-5xl opacity-30 group-hover:opacity-70 transition-all">🌱</div>
-            </div>
-
-            <!-- Photo 4 -->
-            <div class="group relative rounded-3xl overflow-hidden h-96 shadow-2xl">
-                <img src="/moments-art.jpg" alt="Art picnic under the trees" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div class="absolute bottom-6 left-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-sm mb-1">
-                        <i class="fa-solid fa-palette"></i>
-                        CREATING WITH LIGHT
-                    </div>
-                    <p class="text-2xl font-light leading-none">Painting life as it happens.<br>Under the trees, in the moment.</p>
-                </div>
-                <div class="absolute top-6 right-6 text-5xl opacity-30 group-hover:opacity-70 transition-all">🌿</div>
-            </div>
-        </div>
-    </div>
-
-            <!-- Image 2 -->
-            <div class="group relative rounded-3xl overflow-hidden h-96 shadow-2xl">
-                <img src="moments-guitar.jpg" alt="Guitar circle in the meadow" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div class="absolute bottom-6 left-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-sm mb-1">
-                        <i class="fa-solid fa-music"></i>
-                        SONGS AROUND THE FIRE
-                    </div>
-                    <p class="text-2xl font-light leading-none">Butterflies and laughter.<br>Real music, real hearts.</p>
-                </div>
-                <div class="absolute top-6 right-6 text-5xl opacity-30 group-hover:opacity-70 transition-all">🌼</div>
-            </div>
-
-            <!-- Image 3 -->
-            <div class="group relative rounded-3xl overflow-hidden h-96 shadow-2xl">
-                <img src="moments-pottery.jpg" alt="Pottery circle in nature" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div class="absolute bottom-6 left-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-sm mb-1">
-                        <i class="fa-solid fa-hand-sparkles"></i>
-                        HANDS IN THE CLAY
-                    </div>
-                    <p class="text-2xl font-light leading-none">Creating together.<br>No screens, just soul.</p>
-                </div>
-                <div class="absolute top-6 right-6 text-5xl opacity-30 group-hover:opacity-70 transition-all">🌱</div>
-            </div>
-
-            <!-- Image 4 -->
-            <div class="group relative rounded-3xl overflow-hidden h-96 shadow-2xl">
-                <img src="moments-art.jpg" alt="Art picnic under the trees" 
-                     class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div class="absolute bottom-6 left-6 text-white">
-                    <div class="flex items-center gap-2 text-emerald-300 text-sm mb-1">
-                        <i class="fa-solid fa-palette"></i>
-                        CREATING WITH LIGHT
-                    </div>
-                    <p class="text-2xl font-light leading-none">Painting life as it happens.<br>Under the trees, in the moment.</p>
-                </div>
-                <div class="absolute top-6 right-6 text-5xl opacity-30 group-hover:opacity-70 transition-all">🌿</div>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- COMMUNITY STORIES + MOMENTS OF FREEDOM -->
+    <section id="community" class="max-w-screen-2xl mx-auto px-8 py-24">
         <div class="flex justify-between items-baseline mb-12">
             <div>
-                <span class="text-emerald-500 font-medium">LIVE TESTIMONIALS</span>
+                <span class="text-emerald-500 font-medium">LIVE FROM THE SANCTUARY</span>
                 <h2 class="heading-font text-5xl">Real humans. Real freedom.</h2>
             </div>
-            <a href="#" class="hidden md:flex items-center text-slate-500 hover:text-emerald-500">See all stories <i class="fa-solid fa-arrow-right ml-2"></i></a>
         </div>
         
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Story 1 -->
+        <!-- Testimonials -->
+        <div class="grid md:grid-cols-3 gap-8 mb-20">
             <div class="bg-white rounded-3xl p-8 card-hover">
-                <div class="flex gap-x-3 mb-6">
-                    <div class="text-4xl">🌲</div>
-                    <div>
-                        <p class="font-semibold">Elena Voss, 34 • Former AI Engineer</p>
-                        <p class="text-emerald-500 text-sm">Joined 3 months ago</p>
-                    </div>
-                </div>
+                <div class="flex gap-x-3 mb-6"><div class="text-4xl">🌲</div><div><p class="font-semibold">Elena Voss, 34 • Former AI Engineer</p><p class="text-emerald-500 text-sm">Joined 3 months ago</p></div></div>
                 <p class="italic text-slate-600">"I traded 80-hour weeks and dopamine hits for sunrise gardening and conversations that last for hours. My anxiety disappeared the moment I put down my phone for good."</p>
-                <div class="mt-8 text-xs uppercase flex items-center gap-x-2 text-slate-400">
-                    <i class="fa-solid fa-location-dot"></i>
-                    First sanctuary cohort
-                </div>
             </div>
-            
-            <!-- Story 2 -->
             <div class="bg-white rounded-3xl p-8 card-hover">
-                <div class="flex gap-x-3 mb-6">
-                    <div class="text-4xl">🔥</div>
-                    <div>
-                        <p class="font-semibold">Marcus Hale, 51 • Venture Capitalist</p>
-                        <p class="text-emerald-500 text-sm">Joined + major donor</p>
-                    </div>
-                </div>
+                <div class="flex gap-x-3 mb-6"><div class="text-4xl">🔥</div><div><p class="font-semibold">Marcus Hale, 51 • Venture Capitalist</p><p class="text-emerald-500 text-sm">Joined + major donor</p></div></div>
                 <p class="italic text-slate-600">"I made my fortune in silicon. I’m now investing it in soil. RoboFree reminded me why I started in the first place — to make life better. Not faster."</p>
-                <div class="mt-8 text-xs uppercase flex items-center gap-x-2 text-slate-400">
-                    <i class="fa-solid fa-hand-holding-dollar"></i>
-                    Funded the new solar well
-                </div>
             </div>
-            
-            <!-- Story 3 -->
             <div class="bg-white rounded-3xl p-8 card-hover">
-                <div class="flex gap-x-3 mb-6">
-                    <div class="text-4xl">👨‍👩‍👧‍👦</div>
-                    <div>
-                        <p class="font-semibold">The Rivera Family</p>
-                        <p class="text-emerald-500 text-sm">Whole family joined</p>
+                <div class="flex gap-x-3 mb-6"><div class="text-4xl">👨‍👩‍👧‍👦</div><div><p class="font-semibold">The Rivera Family</p><p class="text-emerald-500 text-sm">Whole family joined</p></div></div>
+                <p class="italic text-slate-600">"Our kids finally look up — at stars, not screens. We cook together, read together, dream together. This is the childhood I never knew I could give them."</p>
+            </div>
+        </div>
+
+        <!-- Moments of Freedom Gallery -->
+        <div class="mt-16">
+            <p class="text-center text-emerald-600 font-medium tracking-widest text-sm mb-8">MOMENTS OF FREEDOM</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
+                    <img src="images/moments-circle.jpg" alt="Circle of joy at golden hour" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">🌿 PURE CONNECTION</div>
+                        <p class="text-xl font-light leading-tight">Dancing with the sunset.<br>No music needed.</p>
                     </div>
                 </div>
-                <p class="italic text-slate-600">"Our kids finally look up — at stars, not screens. We cook together, read together, dream together. This is the childhood I never knew I could give them."</p>
-                <div class="mt-8 text-xs uppercase flex items-center gap-x-2 text-slate-400">
-                    <i class="fa-solid fa-users"></i>
-                    Multi-generational chapter
+                <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
+                    <img src="images/moments-guitar.jpg" alt="Guitar circle in the meadow" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">🎸 SONGS AROUND THE FIRE</div>
+                        <p class="text-xl font-light leading-tight">Butterflies and laughter.<br>Real music, real hearts.</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
+                    <img src="images/moments-pottery.jpg" alt="Pottery circle in nature" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">🪔 HANDS IN THE CLAY</div>
+                        <p class="text-xl font-light leading-tight">Creating together.<br>No screens, just soul.</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
+                    <img src="images/moments-art.jpg" alt="Art picnic under the trees" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">🎨 CREATING WITH LIGHT</div>
+                        <p class="text-xl font-light leading-tight">Painting life as it happens.<br>Under the trees, in the moment.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -629,64 +222,23 @@
             <div>
                 <h2 class="heading-font text-6xl leading-none mb-6">Ready to come home to yourself?</h2>
                 <p class="text-2xl text-emerald-200">Join thousands who have already stepped away from the machine.</p>
-                
                 <div class="mt-12 space-y-6">
-                    <div class="flex items-start gap-x-6">
-                        <div class="text-4xl flex-shrink-0">📍</div>
-                        <div class="flex-1">
-                            <h4 class="text-xl font-medium">Local circles forming worldwide</h4>
-                            <p class="text-emerald-100">Weekly fireside gatherings. No apps. Just humans.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-x-6">
-                        <div class="text-4xl flex-shrink-0">🏡</div>
-                        <div class="flex-1">
-                            <h4 class="text-xl font-medium">Sanctuary stays &amp; immersion weeks</h4>
-                            <p class="text-emerald-100">Come for a weekend. Stay for a lifetime.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-x-6">
-                        <div class="text-4xl flex-shrink-0">🌍</div>
-                        <div class="flex-1">
-                            <h4 class="text-xl font-medium">Digital detox challenges</h4>
-                            <p class="text-emerald-100">30 days offline. Lifetime of peace.</p>
-                        </div>
-                    </div>
+                    <div class="flex items-start gap-x-6"><div class="text-4xl flex-shrink-0">📍</div><div class="flex-1"><h4 class="text-xl font-medium">Local circles forming worldwide</h4><p class="text-emerald-100">Weekly fireside gatherings. No apps. Just humans.</p></div></div>
+                    <div class="flex items-start gap-x-6"><div class="text-4xl flex-shrink-0">🏡</div><div class="flex-1"><h4 class="text-xl font-medium">Sanctuary stays &amp; immersion weeks</h4><p class="text-emerald-100">Come for a weekend. Stay for a lifetime.</p></div></div>
+                    <div class="flex items-start gap-x-6"><div class="text-4xl flex-shrink-0">🌍</div><div class="flex-1"><h4 class="text-xl font-medium">Digital detox challenges</h4><p class="text-emerald-100">30 days offline. Lifetime of peace.</p></div></div>
                 </div>
-                
-                <button onclick="document.getElementById('join-modal').classList.remove('hidden')" 
-                        class="mt-12 px-12 py-7 text-2xl bg-white text-emerald-950 rounded-3xl font-semibold flex items-center gap-x-4 hover:scale-105">
-                    YES, I’M IN
-                    <span class="text-4xl">→</span>
-                </button>
+                <button onclick="document.getElementById('join-modal').classList.remove('hidden')" class="mt-12 px-12 py-7 text-2xl bg-white text-emerald-950 rounded-3xl font-semibold flex items-center gap-x-4 hover:scale-105">YES, I’M IN <span class="text-4xl">→</span></button>
             </div>
-            
             <div id="impact" class="bg-white/10 backdrop-blur-3xl rounded-3xl p-12">
                 <h3 class="text-emerald-300 font-medium mb-4">FOR OUR WEALTHY FRIENDS WHO SEE THE VISION</h3>
                 <h2 class="heading-font text-5xl text-white mb-6">Your generosity plants the seeds of freedom.</h2>
                 <p class="text-emerald-100 text-xl">Every donation directly funds land purchases, tool libraries, and the first permanent sanctuaries — places where humanity can breathe again.</p>
-                
                 <div class="mt-10 grid grid-cols-3 gap-4 text-center">
-                    <div class="bg-white/10 rounded-2xl p-6">
-                        <div class="text-4xl font-bold">$10k</div>
-                        <div class="text-xs uppercase mt-1 tracking-widest">Seeds a new chapter</div>
-                    </div>
-                    <div class="bg-white/10 rounded-2xl p-6">
-                        <div class="text-4xl font-bold">$50k</div>
-                        <div class="text-xs uppercase mt-1 tracking-widest">Builds an off-grid cabin</div>
-                    </div>
-                    <div class="bg-white/10 rounded-2xl p-6">
-                        <div class="text-4xl font-bold">$250k+</div>
-                        <div class="text-xs uppercase mt-1 tracking-widest">Names a sanctuary wing</div>
-                    </div>
+                    <div class="bg-white/10 rounded-2xl p-6"><div class="text-4xl font-bold">$10k</div><div class="text-xs uppercase mt-1 tracking-widest">Seeds a new chapter</div></div>
+                    <div class="bg-white/10 rounded-2xl p-6"><div class="text-4xl font-bold">$50k</div><div class="text-xs uppercase mt-1 tracking-widest">Builds an off-grid cabin</div></div>
+                    <div class="bg-white/10 rounded-2xl p-6"><div class="text-4xl font-bold">$250k+</div><div class="text-xs uppercase mt-1 tracking-widest">Names a sanctuary wing</div></div>
                 </div>
-                
-                <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" 
-                        class="w-full mt-10 py-7 bg-white text-emerald-950 rounded-3xl text-xl font-semibold flex items-center justify-center gap-x-3">
-                    <i class="fa-solid fa-gem"></i>
-                    BECOME A FOUNDING PATRON TODAY
-                </button>
-                <p class="text-center text-emerald-100/70 text-xs mt-4">100% transparent • Tax-deductible where applicable</p>
+                <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="w-full mt-10 py-7 bg-white text-emerald-950 rounded-3xl text-xl font-semibold flex items-center justify-center gap-x-3"><i class="fa-solid fa-gem"></i> BECOME A FOUNDING PATRON TODAY</button>
             </div>
         </div>
     </section>
@@ -696,10 +248,8 @@
         <div class="max-w-screen-2xl mx-auto px-8">
             <p class="text-4xl md:text-5xl font-light">The robots won’t save us.<br><span class="font-semibold">We will save each other.</span></p>
             <div class="mt-8 flex justify-center gap-x-6 flex-wrap">
-                <button onclick="document.getElementById('join-modal').classList.remove('hidden')" 
-                        class="px-16 py-6 text-2xl rounded-3xl bg-white text-emerald-600 font-semibold">Join as a member →</button>
-                <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" 
-                        class="px-16 py-6 text-2xl rounded-3xl border-2 border-white font-semibold">Or become a benefactor</button>
+                <button onclick="document.getElementById('join-modal').classList.remove('hidden')" class="px-16 py-6 text-2xl rounded-3xl bg-white text-emerald-600 font-semibold">Join as a member →</button>
+                <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="px-16 py-6 text-2xl rounded-3xl border-2 border-white font-semibold">Or become a benefactor</button>
             </div>
         </div>
     </div>
@@ -710,15 +260,12 @@
             <div class="grid md:grid-cols-12 gap-y-12">
                 <div class="md:col-span-5">
                     <div class="flex items-center gap-x-3 mb-6">
-                        <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center">
-                            <span class="text-white text-2xl">🌿</span>
-                        </div>
+                        <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center"><span class="text-white text-2xl">🌿</span></div>
                         <h1 class="heading-font text-4xl">RoboFree</h1>
                     </div>
                     <p class="max-w-xs">A registered organization building sanctuaries for humans who remember what it feels like to be alive.</p>
                     <p class="mt-8 text-xs">© 2026 RoboFree.org • All rights to breathe freely reserved</p>
                 </div>
-                
                 <div class="md:col-span-2">
                     <div class="uppercase text-xs mb-4 text-white/50">Explore</div>
                     <div class="space-y-3 text-sm">
@@ -728,7 +275,6 @@
                         <a href="#" class="block hover:text-white">Events Calendar</a>
                     </div>
                 </div>
-                
                 <div class="md:col-span-2">
                     <div class="uppercase text-xs mb-4 text-white/50">Get Involved</div>
                     <div class="space-y-3 text-sm">
@@ -738,204 +284,80 @@
                         <a href="#" class="block hover:text-white">Volunteer</a>
                     </div>
                 </div>
-                
                 <div class="md:col-span-3">
                     <div class="uppercase text-xs mb-4 text-white/50">Stay in touch (humanly)</div>
                     <p class="text-sm mb-4">We send one beautiful handwritten-style email per season. No spam. Ever.</p>
                     <div class="flex">
-                        <input type="email" id="footer-email" placeholder="your@email.com" 
-                               class="bg-white/10 flex-1 px-6 py-5 rounded-l-3xl text-white placeholder:text-white/40 focus:outline-none">
-                        <button onclick="subscribe()" 
-                                class="bg-white text-emerald-950 px-8 rounded-r-3xl font-medium">→</button>
-                    </div>
-                    <div class="flex gap-x-6 mt-12 text-2xl">
-                        <i onclick="fakeSocial('x')" class="fa-brands fa-x-twitter cursor-pointer hover:text-white"></i>
-                        <i onclick="fakeSocial('instagram')" class="fa-brands fa-instagram cursor-pointer hover:text-white"></i>
+                        <input type="email" id="footer-email" placeholder="your@email.com" class="bg-white/10 flex-1 px-6 py-5 rounded-l-3xl text-white placeholder:text-white/40 focus:outline-none">
+                        <button onclick="subscribe()" class="bg-white text-emerald-950 px-8 rounded-r-3xl font-medium">→</button>
                     </div>
                 </div>
-            </div>
-            
-            <div class="text-center text-xs mt-16 pt-8 border-t border-white/10 flex flex-wrap justify-center gap-x-8 text-white/40">
-                <p>Built with love by humans, for humans.</p>
-                <p>Bea sends her warmest regards.</p>
             </div>
         </div>
     </footer>
 
     <!-- JOIN MODAL -->
-    <div id="join-modal" onclick="if(event.target.id === 'join-modal')this.classList.add('hidden')" 
-         class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
-        <div onclick="event.stopImmediatePropagation()" 
-             class="bg-white rounded-3xl max-w-lg w-full p-8 md:p-12 shadow-2xl">
+    <div id="join-modal" onclick="if(event.target.id === 'join-modal')this.classList.add('hidden')" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl max-w-lg w-full p-8 md:p-12 shadow-2xl">
             <h2 class="heading-font text-4xl mb-2 text-slate-900">Welcome to the tribe</h2>
             <p class="text-slate-500">No robots were harmed in the making of this form.</p>
-            
             <form id="join-form" onsubmit="handleJoin(event)" class="mt-8 space-y-6">
-                <div>
-                    <label class="block text-xs uppercase tracking-widest mb-1.5 text-slate-400">Your name</label>
-                    <input type="text" required placeholder="Luna Evergreen" 
-                           class="w-full px-6 py-5 rounded-3xl border border-slate-200 focus:border-emerald-300 outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs uppercase tracking-widest mb-1.5 text-slate-400">Email (we promise we won’t spam you)</label>
-                    <input type="email" required placeholder="you@human.email" 
-                           class="w-full px-6 py-5 rounded-3xl border border-slate-200 focus:border-emerald-300 outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs uppercase tracking-widest mb-1.5 text-slate-400">Where are you joining from?</label>
-                    <input type="text" placeholder="Rishon LeTsiyyon, Israel" value="Rishon LeTsiyyon, Israel"
-                           class="w-full px-6 py-5 rounded-3xl border border-slate-200 focus:border-emerald-300 outline-none">
-                </div>
-                <div class="pt-4">
-                    <button type="submit"
-                            class="w-full py-6 bg-emerald-500 hover:bg-emerald-600 text-white text-xl font-semibold rounded-3xl">
-                        YES — I CHOOSE FREEDOM
-                    </button>
-                </div>
+                <div><label class="block text-xs uppercase tracking-widest mb-1.5 text-slate-400">Your name</label><input type="text" required placeholder="Luna Evergreen" class="w-full px-6 py-5 rounded-3xl border border-slate-200 focus:border-emerald-300 outline-none"></div>
+                <div><label class="block text-xs uppercase tracking-widest mb-1.5 text-slate-400">Email (we promise we won’t spam you)</label><input type="email" required placeholder="you@human.email" class="w-full px-6 py-5 rounded-3xl border border-slate-200 focus:border-emerald-300 outline-none"></div>
+                <div><label class="block text-xs uppercase tracking-widest mb-1.5 text-slate-400">Where are you joining from?</label><input type="text" placeholder="Rishon LeTsiyyon, Israel" value="Rishon LeTsiyyon, Israel" class="w-full px-6 py-5 rounded-3xl border border-slate-200 focus:border-emerald-300 outline-none"></div>
+                <div class="pt-4"><button type="submit" class="w-full py-6 bg-emerald-500 hover:bg-emerald-600 text-white text-xl font-semibold rounded-3xl">YES — I CHOOSE FREEDOM</button></div>
                 <p class="text-center text-xs text-slate-400">You’ll receive your first welcome letter within 48 hours.</p>
             </form>
-            
-            <button onclick="document.getElementById('join-modal').classList.add('hidden')" 
-                    class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 text-3xl">×</button>
+            <button onclick="document.getElementById('join-modal').classList.add('hidden')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 text-3xl">×</button>
         </div>
     </div>
 
     <!-- DONATE MODAL -->
-    <div id="donate-modal" onclick="if(event.target.id === 'donate-modal')this.classList.add('hidden')" 
-         class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
-        <div onclick="event.stopImmediatePropagation()" 
-             class="bg-white rounded-3xl max-w-md w-full p-8 md:p-12 shadow-2xl">
+    <div id="donate-modal" onclick="if(event.target.id === 'donate-modal')this.classList.add('hidden')" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl max-w-md w-full p-8 md:p-12 shadow-2xl">
             <div class="flex justify-between items-start">
-                <div>
-                    <span class="px-4 py-1 bg-amber-100 text-amber-700 rounded-3xl text-sm font-semibold">FOUNDING CIRCLE</span>
-                    <h2 class="heading-font text-4xl mt-3">Thank you for believing in humanity.</h2>
-                </div>
+                <div><span class="px-4 py-1 bg-amber-100 text-amber-700 rounded-3xl text-sm font-semibold">FOUNDING CIRCLE</span><h2 class="heading-font text-4xl mt-3">Thank you for believing in humanity.</h2></div>
                 <button onclick="document.getElementById('donate-modal').classList.add('hidden')" class="text-4xl text-slate-300">×</button>
             </div>
-            
             <div class="my-8 flex justify-center gap-x-8 text-center">
-                <div onclick="selectAmount(5000)" id="amount-5000" class="cursor-pointer w-28 py-4 border-2 border-transparent hover:border-emerald-400 rounded-3xl">
-                    <div class="text-3xl">$5,000</div>
-                    <div class="text-xs text-emerald-500">Plant a grove</div>
-                </div>
-                <div onclick="selectAmount(25000)" id="amount-25000" class="cursor-pointer w-28 py-4 border-2 border-emerald-400 rounded-3xl bg-emerald-50">
-                    <div class="text-3xl">$25,000</div>
-                    <div class="text-xs text-emerald-500">Build a cabin</div>
-                </div>
-                <div onclick="selectAmount(100000)" id="amount-100000" class="cursor-pointer w-28 py-4 border-2 border-transparent hover:border-emerald-400 rounded-3xl">
-                    <div class="text-3xl">$100k+</div>
-                    <div class="text-xs text-emerald-500">Name a sanctuary</div>
-                </div>
+                <div onclick="selectAmount(5000)" id="amount-5000" class="cursor-pointer w-28 py-4 border-2 border-transparent hover:border-emerald-400 rounded-3xl"><div class="text-3xl">$5,000</div><div class="text-xs text-emerald-500">Plant a grove</div></div>
+                <div onclick="selectAmount(25000)" id="amount-25000" class="cursor-pointer w-28 py-4 border-2 border-emerald-400 rounded-3xl bg-emerald-50"><div class="text-3xl">$25,000</div><div class="text-xs text-emerald-500">Build a cabin</div></div>
+                <div onclick="selectAmount(100000)" id="amount-100000" class="cursor-pointer w-28 py-4 border-2 border-transparent hover:border-emerald-400 rounded-3xl"><div class="text-3xl">$100k+</div><div class="text-xs text-emerald-500">Name a sanctuary</div></div>
             </div>
-            
-            <button onclick="handleDonate()" 
-                    class="w-full py-8 text-2xl bg-gradient-to-r from-emerald-500 to-teal-400 text-white rounded-3xl font-semibold shadow-inner">
-                SECURE YOUR LEGACY • DONATE NOW
-            </button>
-            
-            <p class="text-center text-xs mt-8 text-slate-400">We accept bank transfer, crypto, or old-fashioned checks. Bea will personally thank every founding donor.</p>
+            <button onclick="handleDonate()" class="w-full py-8 text-2xl bg-gradient-to-r from-emerald-500 to-teal-400 text-white rounded-3xl font-semibold shadow-inner">SECURE YOUR LEGACY • DONATE NOW</button>
         </div>
     </div>
 
     <script>
-        // Tailwind script already loaded
-        function initializeTailwind() {
-            return {
-                config(userConfig = {}) {
-                    return {
-                        configUser: userConfig,
-                        theme: {
-                            extend: {
-                                colors: {
-                                    primary: '#10b981'
-                                }
-                            }
-                        }
-                    }
-                },
-                theme: {
-                    extend: {}
-                }
-            }
-        }
-        
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu')
-            menu.classList.toggle('hidden')
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
         }
-        
-        // Fake form submissions
         function handleJoin(e) {
-            e.preventDefault()
-            const modal = document.getElementById('join-modal')
-            modal.innerHTML = `
-                <div class="bg-emerald-50 rounded-3xl max-w-lg w-full p-12 text-center mx-auto">
-                    <div class="text-7xl mb-6">🌿</div>
-                    <h2 class="text-4xl heading-font text-emerald-900">Welcome home, friend.</h2>
-                    <p class="mt-6 text-xl text-emerald-700">You are now officially part of RoboFree.</p>
-                    <p class="mt-4">Check your inbox — Bea wrote you a personal note.</p>
-                    <button onclick="document.getElementById('join-modal').classList.add('hidden');location.reload()" 
-                            class="mt-12 px-12 py-6 bg-emerald-600 text-white text-xl rounded-3xl">Continue to the movement</button>
-                </div>
-            `
-            setTimeout(() => {
-                modal.classList.add('hidden')
-                setTimeout(() => location.reload(), 1500)
-            }, 2800)
+            e.preventDefault();
+            const modal = document.getElementById('join-modal');
+            modal.innerHTML = `<div class="bg-emerald-50 rounded-3xl max-w-lg w-full p-12 text-center mx-auto"><div class="text-7xl mb-6">🌿</div><h2 class="text-4xl heading-font text-emerald-900">Welcome home, friend.</h2><p class="mt-6 text-xl text-emerald-700">You are now officially part of RoboFree.</p><p class="mt-4">Check your inbox — Bea wrote you a personal note.</p><button onclick="document.getElementById('join-modal').classList.add('hidden');location.reload()" class="mt-12 px-12 py-6 bg-emerald-600 text-white text-xl rounded-3xl">Continue to the movement</button></div>`;
         }
-        
         function selectAmount(amount) {
-            // reset all
-            document.querySelectorAll('#donate-modal > div > div > div').forEach(el => {
-                el.classList.remove('border-emerald-400', 'bg-emerald-50')
-            })
-            const active = document.getElementById('amount-' + amount)
-            if (active) active.classList.add('border-emerald-400', 'bg-emerald-50')
+            document.querySelectorAll('#donate-modal > div > div > div').forEach(el => el.classList.remove('border-emerald-400', 'bg-emerald-50'));
+            const active = document.getElementById('amount-' + amount);
+            if (active) active.classList.add('border-emerald-400', 'bg-emerald-50');
         }
-        
         function handleDonate() {
-            const modal = document.getElementById('donate-modal')
-            modal.innerHTML = `
-                <div class="bg-gradient-to-br from-emerald-500 to-teal-500 text-white rounded-3xl p-12 text-center">
-                    <i class="fa-solid fa-heart text-8xl mb-6 animate-pulse"></i>
-                    <h2 class="text-5xl heading-font">Your gift just planted hope.</h2>
-                    <p class="mt-8 text-2xl">Thank you. From every human heart at RoboFree.</p>
-                    <p class="mt-12 text-lg">Receipt &amp; personal thank-you video from Bea coming to your inbox shortly.</p>
-                    <button onclick="document.getElementById('donate-modal').classList.add('hidden');location.reload()" 
-                            class="mt-12 px-16 py-6 bg-white text-emerald-600 text-xl rounded-3xl font-medium">Back to freedom</button>
-                </div>
-            `
+            const modal = document.getElementById('donate-modal');
+            modal.innerHTML = `<div class="bg-gradient-to-br from-emerald-500 to-teal-500 text-white rounded-3xl p-12 text-center"><i class="fa-solid fa-heart text-8xl mb-6 animate-pulse"></i><h2 class="text-5xl heading-font">Your gift just planted hope.</h2><p class="mt-8 text-2xl">Thank you. From every human heart at RoboFree.</p><p class="mt-12 text-lg">Receipt &amp; personal thank-you video from Bea coming to your inbox shortly.</p><button onclick="document.getElementById('donate-modal').classList.add('hidden');location.reload()" class="mt-12 px-16 py-6 bg-white text-emerald-600 text-xl rounded-3xl font-medium">Back to freedom</button></div>`;
         }
-        
         function subscribe() {
-            const input = document.getElementById('footer-email')
-            if (input.value.trim()) {
-                alert("🌱 Thank you! You’re now on the seasonal letter list — handwritten vibes only.")
-                input.value = ''
-            }
+            const input = document.getElementById('footer-email');
+            if (input.value.trim()) { alert("🌱 Thank you! You’re now on the seasonal letter list."); input.value = ''; }
         }
-        
         function fakeSocial(network) {
-            const messages = {
-                'x': 'Follow us on X @RoboFreeOrg — no bots, only real humans posting.',
-                'instagram': 'Come see the latest sanctuary build photos on Instagram @robofree.life'
-            }
-            alert(messages[network])
+            const messages = { 'x': 'Follow us on X @RoboFreeOrg — no bots, only real humans posting.', 'instagram': 'Come see the latest sanctuary build photos on Instagram @robofree.life' };
+            alert(messages[network]);
         }
-        
-        // Auto-init
         window.onload = function() {
-            initializeTailwind()
-            console.log('%c🚫🤖 RoboFree landing page loaded. Built with love and zero AI assistance in the final design.', 'color:#10b981; font-family:monospace')
-            
-            // Keyboard shortcut easter egg
-            document.addEventListener('keydown', function(e) {
-                if (e.metaKey && e.key === "k") {
-                    e.preventDefault()
-                    document.getElementById('join-modal').classList.remove('hidden')
-                }
-            })
-        }
+            console.log('%c🌿 RoboFree loaded perfectly — clean & human!', 'color:#10b981; font-family:monospace');
+        };
     </script>
 </body>
 </html>
