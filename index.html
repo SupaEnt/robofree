@@ -1,122 +1,438 @@
-import tkinter as tk
-import ctypes
-from ctypes import wintypes
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RoboFree — A warm community choosing simple, human lives. Nature. Real connection. Freedom.">
+    <title>RoboFree • Live Human. Stay Free.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --tw-color-primary: #10b981;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tail-container * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
 
-# === Windows API Constants (required for SetWindowPos) ===
-SWP_NOMOVE = 0x0002
-SWP_NOSIZE = 0x0001
-SWP_NOACTIVATE = 0x0010
+        .hero-bg {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%),
+                        url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+            animation: heroParallax 25s infinite linear;
+        }
+        
+        @keyframes heroParallax {
+            0% { background-position: center 0%; }
+            100% { background-position: center 100%; }
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(16 185 129 / 0.25);
+        }
+        
+        .leaf { animation: floatLeaf 6s ease-in-out infinite; }
 
-def create_floating_box():
-    root = tk.Tk()
-    
-    # Window setup
-    root.title("Barak Laniado Enterprises")
-    root.overrideredirect(True)          # Frameless window
-    root.attributes('-topmost', True)
-    root.geometry("903x90+150+150")      # Wide elegant banner
-    
-    # === Stronger Topmost for Browsers (Chrome, Edge, Firefox, etc.) ===
-    def force_topmost():
-        """Force the window to stay truly on top, even over browser UI elements."""
-        try:
-            hwnd = root.winfo_id()
-            ctypes.windll.user32.SetWindowPos(
-                hwnd,
-                wintypes.HWND(-1),                    # HWND_TOPMOST
-                0, 0, 0, 0,
-                SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE
-            )
-        except Exception:
-            pass
+        .vision-bg {
+            background: linear-gradient(to bottom, #f8f5f0 0%, #f1ede4 100%);
+        }
 
-    # Apply immediately
-    force_topmost()
-    
-    # Elegant dark theme with gold accents
-    root.configure(bg='#0d0d1a')
-    
-    # Main frame with rich golden border
-    frame = tk.Frame(
-        root, 
-        bg='#0d0d1a', 
-        highlightbackground='#D4AF37', 
-        highlightthickness=2,
-        bd=0
-    )
-    frame.pack(fill='both', expand=True, padx=4, pady=4)
-    
-    # Content container
-    content_frame = tk.Frame(frame, bg='#0d0d1a')
-    content_frame.pack(expand=True, pady=10)
+        .tuscany-bg {
+            background: linear-gradient(to bottom, #f1ede4 0%, #e8e0d3 100%);
+        }
 
-    # Company name
-    name_label = tk.Label(
-        content_frame,
-        text="Barak Laniado Enterprises",
-        font=("Segoe UI", 20, "bold"),
-        fg="#D4AF37",
-        bg='#0d0d1a'
-    )
-    name_label.pack(side='left', padx=(0, 15))
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #c4b89e, transparent);
+        }
+    </style>
+</head>
+<body class="tail-container">
 
-    # 5-star rating
-    stars_label = tk.Label(
-        content_frame,
-        text="★★★★★",
-        font=("Segoe UI", 18),
-        fg="#D4AF37",
-        bg='#0d0d1a'
-    )
-    stars_label.pack(side='left')
-    
-    # === Dragging support ===
-    root._drag_x = 0
-    root._drag_y = 0
-    
-    def start_move(event):
-        root._drag_x = event.x_root
-        root._drag_y = event.y_root
-    
-    def do_move(event):
-        deltax = event.x_root - root._drag_x
-        deltay = event.y_root - root._drag_y
-        new_x = root.winfo_x() + deltax
-        new_y = root.winfo_y() + deltay
-        root.geometry(f"+{new_x}+{new_y}")
-        root._drag_x = event.x_root
-        root._drag_y = event.y_root
-        force_topmost()          # Re-assert topmost after move
-    
-    root.bind("<Button-1>", start_move)
-    root.bind("<B1-Motion>", do_move)
-    
-    # === Close button ===
-    def close_window(event=None):
-        root.destroy()
-    
-    close_btn = tk.Button(
-        frame,
-        text="✕",
-        command=close_window,
-        bg='#0d0d1a',
-        fg='#D4AF37',
-        activebackground='#1a1a2e',
-        activeforeground='#FFFFFF',
-        bd=0,
-        font=("Segoe UI", 11, "bold"),
-        cursor="hand2",
-        width=2,
-        height=1
-    )
-    close_btn.place(relx=0.97, rely=0.08, anchor='ne')
-    
-    # Keyboard + mouse close shortcuts
-    root.bind("<Escape>", close_window)
-    root.bind("<Button-3>", close_window)
-    
-    root.minsize(300, 70)
-    root.mainloop()
+    <!-- NAVBAR -->
+    <nav class="bg-slate-950/90 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-inner">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                    <h1 class="heading-font text-3xl font-bold tracking-tighter text-white">RoboFree</h1>
+                    <span class="text-xs font-medium px-2.5 py-px bg-emerald-500/10 text-emerald-400 rounded-full ring-1 ring-emerald-400/30">est. 2026</span>
+                </div>
 
-if __name__ == "__main__":
-    create_floating_box()
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium text-slate-300">
+                    <a href="#vision" class="hover:text-white flex items-center gap-x-1"><i class="fa-solid fa-leaf text-emerald-400"></i> VISION</a>
+                    <a href="#tuscany" class="hover:text-white">TUSCANY</a>
+                    <a href="#bea" class="hover:text-white">MEET BEA</a>
+                    <a href="#community" class="hover:text-white">COMMUNITY</a>
+                    <a href="#join" class="hover:text-white">JOIN</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="px-6 py-3 bg-white text-slate-900 font-semibold rounded-3xl flex items-center gap-x-2 hover:shadow-xl">
+                        <i class="fa-solid fa-heart text-red-500"></i><span>DONATE</span>
+                    </button>
+                    <button onclick="document.getElementById('join-modal').classList.remove('hidden')" class="px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-3xl flex items-center gap-x-2 shadow-lg shadow-emerald-500/40">
+                        <i class="fa-solid fa-handshake"></i> JOIN FREE
+                    </button>
+                    <button id="mobile-menu-btn" class="md:hidden text-2xl text-white"><i class="fa-solid fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-bg h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(at_bottom_right,#10b981_0%,transparent_70%)] opacity-30"></div>
+        <div class="absolute top-20 left-10 text-emerald-300/30 text-7xl leaf" style="animation-delay: 0s;">🍃</div>
+        <div class="absolute top-40 right-12 text-emerald-300/30 text-6xl leaf" style="animation-delay: 1.8s;">🌿</div>
+        <div class="absolute bottom-32 left-1/4 text-emerald-300/30 text-8xl leaf" style="animation-delay: 3.2s;">🌱</div>
+        <div class="absolute top-1/3 right-1/4 text-emerald-300/30 text-5xl leaf" style="animation-delay: 2.5s;">🍂</div>
+
+        <div class="max-w-screen-2xl mx-auto px-8 md:px-16 relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md text-white text-sm font-medium px-6 py-2 rounded-3xl border border-white/20 mb-8">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    NOW FORMING • OFF-GRID CHAPTERS OPENING SOON
+                </div>
+                <h1 class="heading-font text-7xl md:text-8xl font-bold leading-none text-white tracking-tighter mb-6">RoboFree</h1>
+                <p class="text-3xl md:text-4xl text-white/90 leading-tight mb-8 max-w-lg">
+                    A warm community of people choosing simple, human lives —<br>
+                    <span class="text-emerald-300">away from robots, screens, and the rush of tomorrow.</span>
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="document.getElementById('join-modal').classList.remove('hidden')" class="px-10 py-6 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-3xl flex items-center gap-x-3 text-xl shadow-xl">
+                        <span>JOIN THE MOVEMENT</span><i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="px-10 py-6 border-2 border-white/70 hover:border-white text-white font-semibold rounded-3xl flex items-center gap-x-3 text-xl">
+                        <i class="fa-solid fa-hand-holding-dollar"></i><span>FUND OUR FREEDOM</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- THE VISION -->
+    <section id="vision" class="vision-bg py-24">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <span class="uppercase tracking-[2px] text-emerald-700 text-sm font-semibold">Our Foundation</span>
+                <h2 class="heading-font text-6xl md:text-7xl text-slate-900 mt-4 leading-none">A Space to Stay Human</h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-12 text-[17px] leading-relaxed text-slate-700">
+                <div>
+                    <p>Not yet, but it won’t be long.</p>
+                    <p class="mt-4">In a relatively short time, it will become completely normal to see robots working in bars, factories, hotels, offices, and entertainment venues — and even serving in private homes as waiters or handling cleaning and maintenance. We will increasingly share our time and our spaces with them.</p>
+                    <p class="mt-4">While it is true that technology cannot be stopped, there is an equally real and purely human need to take a break from everything that progress demands of us.</p>
+                </div>
+
+                <div class="section-divider my-8"></div>
+
+                <div>
+                    <p class="font-medium text-xl text-slate-800">This is why Robofree.org was created: a community that puts the human being back at the center, with nature above all else.</p>
+                    <p class="mt-6">Robofree.org aims to establish zones that are off-limits not only to robots, but also to computers and mobile phones, and to rediscover activities that are fundamentally human — things we do with our hands, our minds, our bodies, and through the kind of sharing that defines us as a species.</p>
+                    <p class="mt-6">We want to rediscover our capacity to create objects, to meditate, to share, to listen, and to tell stories. We are creating places where it is possible to “stay human” — or even to become human again — and to reconnect with a fundamental part of ourselves that risks being lost.</p>
+                </div>
+
+                <div class="section-divider my-8"></div>
+
+                <div>
+                    <p>Whether for a day, a week, or a month, it will be possible to stay with like-minded people in our spaces, free from artificial intelligence — however advanced — and free from constant connection to the network through screens, whether on phones, televisions, or computers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR FIRST SANCTUARY - TUSCANY -->
+    <section id="tuscany" class="tuscany-bg py-20 border-t border-[#d4c9b0]">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <!-- Hero Image -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl mb-16 h-[520px] md:h-[620px] flex items-end">
+                <img src="images/tuscany-sunrise.jpg" alt="Tuscany at sunrise - rolling hills with olive groves and cypress trees" 
+                     class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10"></div>
+                
+                <div class="relative z-10 px-8 md:px-16 pb-12 md:pb-16 max-w-4xl">
+                    <span class="uppercase tracking-[3px] text-emerald-300 text-sm font-semibold">The First Step</span>
+                    <h2 class="heading-font text-white text-6xl md:text-7xl leading-none mt-3">Our First Sanctuary</h2>
+                    <p class="mt-3 text-2xl text-white/90">Tuscany, Italy • Olive groves &amp; wooden cabins</p>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="prose prose-lg max-w-none text-slate-700 text-[17px] leading-relaxed">
+                    <p class="text-2xl font-light text-slate-800">We are starting from scratch, but we intend to go far.</p>
+                    
+                    <p class="mt-6">The pilot project is to purchase land in the Tuscan countryside in Italy — a plot of olive trees — where we will install small wooden cabins.</p>
+                    
+                    <p class="mt-6">We will buy the land through donations. Every contribution we receive will go toward this first step, creating a small initial seed from which we hope to grow others — two, ten, a hundred — all over the world. These will be increasingly well-equipped and active, developed in collaboration with professional artisans, farmers, holistic practitioners, yoga teachers, artists, and educators.</p>
+                    
+                    <p class="mt-6">Donation management will be fully transparent, and donors will always be kept informed about how their contributions are used.</p>
+                </div>
+
+                <div class="mt-12 p-8 bg-white/70 rounded-3xl border border-[#d4c9b0]">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-2xl text-slate-800">We are not against progress.</h3>
+                            <p class="mt-3 text-slate-600">We stand for the preservation of purely human capacities and resources. We use only the technology necessary to stay in contact and manage our activities.</p>
+                        </div>
+                        <div>
+                            <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" 
+                                    class="px-10 py-5 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-3xl flex items-center gap-x-3 text-lg shadow-lg whitespace-nowrap">
+                                <i class="fa-solid fa-seedling"></i>
+                                <span>Plant the First Seed</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEET BEA -->
+    <section id="bea" class="bg-gradient-to-br from-slate-900 to-emerald-950 py-24 text-white">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-5">
+                    <div class="rounded-3xl overflow-hidden border-4 border-white/30">
+                        <img src="https://picsum.photos/id/1011/800/900" alt="Bea — Founder of RoboFree" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <span class="uppercase text-emerald-400 text-sm font-semibold tracking-[1px]">MEET THE VISIONARY</span>
+                    <h2 class="heading-font text-6xl leading-none mt-4 mb-8">Hi, I’m Bea.<br>I started this because I missed being human.</h2>
+                    <p class="text-xl text-white/80 leading-relaxed max-w-2xl">After 15 years building tech empires, I walked away from the screens and the algorithms. I wanted my children to know the sound of birds instead of notifications. I wanted to remember what my own hands could create.</p>
+                    <p class="mt-8 text-lg text-white/70">RoboFree is my love letter to humanity. If you feel the same quiet ache for something real — welcome home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY + MOMENTS OF FREEDOM -->
+    <section id="community" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="flex justify-between items-baseline mb-12">
+            <div>
+                <span class="text-emerald-500 font-medium">LIVE FROM THE SANCTUARY</span>
+                <h2 class="heading-font text-5xl">Real humans. Real freedom.</h2>
+            </div>
+        </div>
+        
+        <!-- Testimonials -->
+        <div class="grid md:grid-cols-3 gap-8 mb-20">
+            <div class="bg-white rounded-3xl p-8 card-hover">
+                <div class="flex gap-x-3 mb-6"><div class="text-4xl">🌲</div><div><p class="font-semibold">Elena Voss, 34 • Former AI Engineer</p><p class="text-emerald-500 text-sm">Joined 3 months ago</p></div></div>
+                <p class="italic text-slate-600">"I traded 80-hour weeks and dopamine hits for sunrise gardening and conversations that last for hours. My anxiety disappeared the moment I put down my phone for good."</p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 card-hover">
+                <div class="flex gap-x-3 mb-6"><div class="text-4xl">🔥</div><div><p class="font-semibold">Marcus Hale, 51 • Venture Capitalist</p><p class="text-emerald-500 text-sm">Joined + major donor</p></div></div>
+                <p class="italic text-slate-600">"I made my fortune in silicon. I’m now investing it in soil. RoboFree reminded me why I started in the first place — to make life better. Not faster."</p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 card-hover">
+                <div class="flex gap-x-3 mb-6"><div class="text-4xl">👨‍👩‍👧‍👦</div><div><p class="font-semibold">The Rivera Family</p><p class="text-emerald-500 text-sm">Whole family joined</p></div></div>
+                <p class="italic text-slate-600">"Our kids finally look up — at stars, not screens. We cook together, read together, dream together. This is the childhood I never knew I could give them."</p>
+            </div>
+        </div>
+
+        <!-- Moments of Freedom Gallery -->
+        <div class="mt-16">
+            <p class="text-center text-emerald-600 font-medium tracking-widest text-sm mb-8">MOMENTS OF FREEDOM</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
+                    <img src="images/moments-circle.jpg" alt="Circle of joy at golden hour" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">🌿 PURE CONNECTION</div>
+                        <p class="text-xl font-light leading-tight">Dancing with the sunset.<br>No music needed.</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
+                    <img src="images/moments-guitar.jpg" alt="Guitar circle in the meadow" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">🎸 SONGS AROUND THE FIRE</div>
+                        <p class="text-xl font-light leading-tight">Butterflies and laughter.<br>Real music, real hearts.</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
+                    <img src="images/moments-pottery.jpg" alt="Pottery circle in nature" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">🪔 HANDS IN THE CLAY</div>
+                        <p class="text-xl font-light leading-tight">Creating together.<br>No screens, just soul.</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden h-[420px] shadow-2xl">
+                    <img src="images/moments-art.jpg" alt="Art picnic under the trees" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="flex items-center gap-2 text-emerald-300 text-xs tracking-widest mb-1">🎨 CREATING WITH LIGHT</div>
+                        <p class="text-xl font-light leading-tight">Painting life as it happens.<br>Under the trees, in the moment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOIN & DONATE TEASER -->
+    <section id="join" class="bg-emerald-950 py-24 text-white relative overflow-hidden">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="heading-font text-6xl leading-none mb-6">Ready to come home to yourself?</h2>
+                <p class="text-2xl text-emerald-200">Join thousands who have already stepped away from the machine.</p>
+                
+                <div class="mt-8 p-6 bg-white/10 rounded-2xl border border-white/20">
+                    <p class="text-emerald-200">Every contribution goes directly toward purchasing the first olive grove in Tuscany — the living seed from which we will grow sanctuaries across the world.</p>
+                </div>
+
+                <div class="mt-12 space-y-6">
+                    <div class="flex items-start gap-x-6"><div class="text-4xl flex-shrink-0">📍</div><div class="flex-1"><h4 class="text-xl font-medium">Local circles forming worldwide</h4><p class="text-emerald-100">Weekly fireside gatherings. No apps. Just humans.</p></div></div>
+                    <div class="flex items-start gap-x-6"><div class="text-4xl flex-shrink-0">🏡</div><div class="flex-1"><h4 class="text-xl font-medium">Sanctuary stays &amp; immersion weeks</h4><p class="text-emerald-100">Come for a weekend. Stay for a lifetime.</p></div></div>
+                    <div class="flex items-start gap-x-6"><div class="text-4xl flex-shrink-0">🌍</div><div class="flex-1"><h4 class="text-xl font-medium">Digital detox challenges</h4><p class="text-emerald-100">30 days offline. Lifetime of peace.</p></div></div>
+                </div>
+                <button onclick="document.getElementById('join-modal').classList.remove('hidden')" class="mt-12 px-12 py-7 text-2xl bg-white text-emerald-950 rounded-3xl font-semibold flex items-center gap-x-4 hover:scale-105">YES, I’M IN <span class="text-4xl">→</span></button>
+            </div>
+            <div id="impact" class="bg-white/10 backdrop-blur-3xl rounded-3xl p-12">
+                <h3 class="text-emerald-300 font-medium mb-4">FOR OUR WEALTHY FRIENDS WHO SEE THE VISION</h3>
+                <h2 class="heading-font text-5xl text-white mb-6">Your generosity plants the seeds of freedom.</h2>
+                <p class="text-emerald-100 text-xl">Every donation directly funds land purchases, tool libraries, and the first permanent sanctuaries — places where humanity can breathe again.</p>
+                <div class="mt-10 grid grid-cols-3 gap-4 text-center">
+                    <div class="bg-white/10 rounded-2xl p-6"><div class="text-4xl font-bold">$10k</div><div class="text-xs uppercase mt-1 tracking-widest">Seeds a new chapter</div></div>
+                    <div class="bg-white/10 rounded-2xl p-6"><div class="text-4xl font-bold">$50k</div><div class="text-xs uppercase mt-1 tracking-widest">Builds an off-grid cabin</div></div>
+                    <div class="bg-white/10 rounded-2xl p-6"><div class="text-4xl font-bold">$250k+</div><div class="text-xs uppercase mt-1 tracking-widest">Names a sanctuary wing</div></div>
+                </div>
+                <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="w-full mt-10 py-7 bg-white text-emerald-950 rounded-3xl text-xl font-semibold flex items-center justify-center gap-x-3"><i class="fa-solid fa-gem"></i> BECOME A FOUNDING PATRON TODAY</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA BANNER -->
+    <div class="bg-gradient-to-r from-emerald-500 to-teal-500 py-16 text-white text-center">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <p class="text-4xl md:text-5xl font-light">The robots won’t save us.<br><span class="font-semibold">We will save each other.</span></p>
+            <div class="mt-8 flex justify-center gap-x-6 flex-wrap">
+                <button onclick="document.getElementById('join-modal').classList.remove('hidden')" class="px-16 py-6 text-2xl rounded-3xl bg-white text-emerald-600 font-semibold">Join as a member →</button>
+                <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="px-16 py-6 text-2xl rounded-3xl border-2 border-white font-semibold">Or become a benefactor</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-white/70">
+        <div class="max-w-screen-2xl mx-auto px-8 pt-16 pb-8">
+            <div class="grid md:grid-cols-12 gap-y-12">
+                <div class="md:col-span-5">
+                    <div class="flex items-center gap-x-3 mb-6">
+                        <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center"><span class="text-white text-2xl">🌿</span></div>
+                        <h1 class="heading-font text-4xl">RoboFree</h1>
+                    </div>
+                    <p class="max-w-xs">A registered organization building sanctuaries for humans who remember what it feels like to be alive.</p>
+                    
+                    <p class="mt-6 text-sm">Questions or want to subscribe to our seasonal updates?<br>
+                    <a href="mailto:info@robofree.org" class="text-emerald-400 hover:text-emerald-300">info@robofree.org</a></p>
+                    
+                    <p class="mt-8 text-xs">© 2026 RoboFree.org • All rights to breathe freely reserved</p>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="uppercase text-xs mb-4 text-white/50">Explore</div>
+                    <div class="space-y-3 text-sm">
+                        <a href="#vision" class="block hover:text-white">The Vision</a>
+                        <a href="#tuscany" class="block hover:text-white">Tuscany Project</a>
+                        <a href="#community" class="block hover:text-white">Stories</a>
+                        <a href="#" class="block hover:text-white">Sanctuaries</a>
+                    </div>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="uppercase text-xs mb-4 text-white/50">Get Involved</div>
+                    <div class="space-y-3 text-sm">
+                        <a onclick="document.getElementById('join-modal').classList.remove('hidden')" class="block hover:text-white">Become a Member</a>
+                        <a onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="block hover:text-white">Donate</a>
+                        <a href="#" class="block hover:text-white">Host a Circle</a>
+                        <a href="#" class="block hover:text-white">Volunteer</a>
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <div class="uppercase text-xs mb-4 text-white/50">Stay in touch (humanly)</div>
+                    <p class="text-sm mb-4">We send one beautiful handwritten-style email per season. No spam. Ever.</p>
+                    <div class="flex">
+                        <input type="email" id="footer-email" placeholder="your@email.com" class="bg-white/10 flex-1 px-6 py-5 rounded-l-3xl text-white placeholder:text-white/40 focus:outline-none">
+                        <button onclick="subscribe()" class="bg-white text-emerald-950 px-8 rounded-r-3xl font-medium">→</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JOIN MODAL -->
+    <div id="join-modal" onclick="if(event.target.id === 'join-modal')this.classList.add('hidden')" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl max-w-lg w-full p-8 md:p-12 shadow-2xl">
+            <h2 class="heading-font text-4xl mb-2 text-slate-900">Welcome to the tribe</h2>
+            <p class="text-slate-500">No robots were harmed in the making of this form.</p>
+            <form id="join-form" onsubmit="handleJoin(event)" class="mt-8 space-y-6">
+                <div><label class="block text-xs uppercase tracking-widest mb-1.5 text-slate-400">Your name</label><input type="text" required placeholder="Luna Evergreen" class="w-full px-6 py-5 rounded-3xl border border-slate-200 focus:border-emerald-300 outline-none"></div>
+                <div><label class="block text-xs uppercase tracking-widest mb-1.5 text-slate-400">Email (we promise we won’t spam you)</label><input type="email" required placeholder="you@human.email" class="w-full px-6 py-5 rounded-3xl border border-slate-200 focus:border-emerald-300 outline-none"></div>
+                <div><label class="block text-xs uppercase tracking-widest mb-1.5 text-slate-400">Where are you joining from?</label><input type="text" placeholder="Rishon LeTsiyyon, Israel" value="Rishon LeTsiyyon, Israel" class="w-full px-6 py-5 rounded-3xl border border-slate-200 focus:border-emerald-300 outline-none"></div>
+                <div class="pt-4"><button type="submit" class="w-full py-6 bg-emerald-500 hover:bg-emerald-600 text-white text-xl font-semibold rounded-3xl">YES — I CHOOSE FREEDOM</button></div>
+                <p class="text-center text-xs text-slate-400">You’ll receive your first welcome letter within 48 hours.</p>
+            </form>
+            <button onclick="document.getElementById('join-modal').classList.add('hidden')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 text-3xl">×</button>
+        </div>
+    </div>
+
+    <!-- DONATE MODAL -->
+    <div id="donate-modal" onclick="if(event.target.id === 'donate-modal')this.classList.add('hidden')" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl max-w-md w-full p-8 md:p-12 shadow-2xl">
+            <div class="flex justify-between items-start">
+                <div><span class="px-4 py-1 bg-amber-100 text-amber-700 rounded-3xl text-sm font-semibold">FOUNDING CIRCLE</span><h2 class="heading-font text-4xl mt-3">Thank you for believing in humanity.</h2></div>
+                <button onclick="document.getElementById('donate-modal').classList.add('hidden')" class="text-4xl text-slate-300">×</button>
+            </div>
+            <div class="my-8 flex justify-center gap-x-8 text-center">
+                <div onclick="selectAmount(5000)" id="amount-5000" class="cursor-pointer w-28 py-4 border-2 border-transparent hover:border-emerald-400 rounded-3xl"><div class="text-3xl">$5,000</div><div class="text-xs text-emerald-500">Plant a grove</div></div>
+                <div onclick="selectAmount(25000)" id="amount-25000" class="cursor-pointer w-28 py-4 border-2 border-emerald-400 rounded-3xl bg-emerald-50"><div class="text-3xl">$25,000</div><div class="text-xs text-emerald-500">Build a cabin</div></div>
+                <div onclick="selectAmount(100000)" id="amount-100000" class="cursor-pointer w-28 py-4 border-2 border-transparent hover:border-emerald-400 rounded-3xl"><div class="text-3xl">$100k+</div><div class="text-xs text-emerald-500">Name a sanctuary</div></div>
+            </div>
+            <button onclick="handleDonate()" class="w-full py-8 text-2xl bg-gradient-to-r from-emerald-500 to-teal-400 text-white rounded-3xl font-semibold shadow-inner">SECURE YOUR LEGACY • DONATE NOW</button>
+        </div>
+    </div>
+
+    <script>
+        function handleJoin(e) {
+            e.preventDefault();
+            const modal = document.getElementById('join-modal');
+            modal.innerHTML = `<div class="bg-emerald-50 rounded-3xl max-w-lg w-full p-12 text-center mx-auto"><div class="text-7xl mb-6">🌿</div><h2 class="text-4xl heading-font text-emerald-900">Welcome home, friend.</h2><p class="mt-6 text-xl text-emerald-700">You are now officially part of RoboFree.</p><p class="mt-4">Check your inbox — Bea wrote you a personal note.</p><button onclick="document.getElementById('join-modal').classList.add('hidden');location.reload()" class="mt-12 px-12 py-6 bg-emerald-600 text-white text-xl rounded-3xl">Continue to the movement</button></div>`;
+        }
+        function selectAmount(amount) {
+            document.querySelectorAll('#donate-modal > div > div > div').forEach(el => el.classList.remove('border-emerald-400', 'bg-emerald-50'));
+            const active = document.getElementById('amount-' + amount);
+            if (active) active.classList.add('border-emerald-400', 'bg-emerald-50');
+        }
+        function handleDonate() {
+            const modal = document.getElementById('donate-modal');
+            modal.innerHTML = `<div class="bg-gradient-to-br from-emerald-500 to-teal-500 text-white rounded-3xl p-12 text-center"><i class="fa-solid fa-heart text-8xl mb-6 animate-pulse"></i><h2 class="text-5xl heading-font">Your gift just planted hope.</h2><p class="mt-8 text-2xl">Thank you. From every human heart at RoboFree.</p><p class="mt-12 text-lg">Receipt &amp; personal thank-you video from Bea coming to your inbox shortly.</p><button onclick="document.getElementById('donate-modal').classList.add('hidden');location.reload()" class="mt-12 px-16 py-6 bg-white text-emerald-600 text-xl rounded-3xl font-medium">Back to freedom</button></div>`;
+        }
+        function subscribe() {
+            const input = document.getElementById('footer-email');
+            if (input.value.trim()) { alert("🌱 Thank you! You’re now on the seasonal letter list — handwritten vibes only."); input.value = ''; }
+        }
+        window.onload = function() {
+            console.log('%c🌿 RoboFree loaded perfectly with new Vision & Tuscany sections!', 'color:#10b981; font-family:monospace');
+        };
+    </script>
+</body>
+</html>
